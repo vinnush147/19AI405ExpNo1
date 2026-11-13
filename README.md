@@ -1,7 +1,8 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
-
+<h3>Name: Vinnush Kumar L S
+<h3>Register Number: 21222323244
+  
+## Date: 13/11/2026
 
 <h3>AIM:</h3>
 <br>
@@ -40,3 +41,54 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+# Program:
+
+```
+import random
+class MedicinePrescribingAgent:
+    def __init__(self):
+        self.rooms = {
+            "Room 1": random.uniform(97.0, 102.5),
+            "Room 2": random.uniform(97.0, 102.5)
+        }
+        self.performance = 0
+        self.current_room = random.choice(list(self.rooms.keys()))
+    def sense(self):
+        """Sense current room and patient's temperature."""
+        temperature = self.rooms[self.current_room]
+        print(f"\nAgent is in {self.current_room}")
+        print(f"Patient Temperature: {temperature:.1f}°F")
+        return temperature
+    def prescribe_medicine(self, temperature):
+        """Treat patient if temperature is above 98.5°F."""
+        if temperature > 98.5:
+            print("Patient has fever.")
+            print("Medicine Prescribed.")
+            self.performance += 1
+        else:
+            print("Patient is healthy.")
+            print("No medicine required.")
+    def move(self):
+        """Move to the other room."""
+        previous_room = self.current_room
+        self.current_room = "Room 2" if self.current_room == "Room 1" else "Room 1"
+        print(f"\nMoving from {previous_room} to {self.current_room}")
+        self.performance -= 1
+    def run(self):
+        print("=== Medicine Prescribing Agent ===")
+        temperature = self.sense()
+        self.prescribe_medicine(temperature)
+        self.move()
+        temperature = self.sense()
+        self.prescribe_medicine(temperature)
+        print("\nFinal Performance:", self.performance)
+agent = MedicinePrescribingAgent()
+agent.run()
+```
+
+# Output:
+<img width="377" height="487" alt="image" src="https://github.com/user-attachments/assets/620a9cc2-95e3-483d-9dbf-fbe08d37acb8" />
+
+# Result:
+Thus found the PEAS description for the given AI problem and develop an AI agent.
